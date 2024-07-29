@@ -17,7 +17,7 @@ defmodule JauntyGreeterWeb.Router do
   scope "/", JauntyGreeterWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    get "/", HomeController, :hello
   end
 
   # Other scopes may use custom stacks.
