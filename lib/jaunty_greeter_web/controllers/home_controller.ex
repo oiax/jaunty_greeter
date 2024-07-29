@@ -5,7 +5,7 @@ defmodule JauntyGreeterWeb.HomeController do
     render(conn, :index)
   end
 
-  def hello(conn, _params) do
-    render(conn, :hello)
+  def hello(conn, %{"name" => name} = _params) do
+    render(conn, :hello, name: name)
   end
 end
