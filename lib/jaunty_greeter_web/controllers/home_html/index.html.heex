@@ -1,0 +1,9 @@
+<ol class="list-disc ml-4">
+  <%= for name <- ~w(Alice Bob Carol) do %>
+    <li>
+      <a href={~p"/hello/#{name}"} class="underline text-blue-700">
+        <%= name %>
+      </a>
+    </li>
+  <% end %>
+</ol>
