@@ -24,4 +24,7 @@ defmodule JauntyGreeterWeb.RobotLive do
     socket = assign(socket, :name, name)
     {:noreply, socket}
   end
+
+  defp button_class(true), do: "btn btn-secondary mx-2"
+  defp button_class(false), do: "btn btn-primary mx-2"
 end
