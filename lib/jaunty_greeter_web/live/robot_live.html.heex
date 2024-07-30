@@ -1,2 +1,16 @@
+<ol class="flex justify-center">
+  <%= for name <- ~w(Alice Bob Carol) do %>
+    <li>
+      <button
+        type="button"
+        class="btn btn-primary mx-2"
+        phx-click="change_name"
+        phx-value-name={name}
+      >
+        <%= name %>
+      </button>
+    </li>
+  <% end %>
+</ol>
 <div><span class="font-bold">counter:</span> <%= @counter %></div>
 <div><span class="font-bold">name:</span> <%= @name %></div>
