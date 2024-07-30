@@ -8,6 +8,7 @@ defmodule JauntyGreeterWeb.RobotLive do
       socket
       |> assign(:counter, 0)
       |> assign(:name, "world")
+      |> assign(:wizard_step, 0)
 
     Process.send_after(self(), :increment_counter, 1000)
 
