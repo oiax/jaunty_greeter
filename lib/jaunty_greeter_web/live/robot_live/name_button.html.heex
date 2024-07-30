@@ -1,0 +1,8 @@
+<button
+  type="button"
+  class={button_class(@name == @current_name)}
+  phx-click="change_name"
+  phx-value-name={@name}
+>
+  <%= @name %>
+</button>

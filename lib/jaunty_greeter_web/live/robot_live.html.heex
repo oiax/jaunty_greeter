@@ -1,0 +1,9 @@
+<ol class="flex justify-center">
+  <%= for name <- ~w(Alice Bob Carol) do %>
+    <li>
+      <.name_button name={name} current_name={@name}></.name_button>
+    </li>
+  <% end %>
+</ol>
+<div><span class="font-bold">counter:</span> <%= @counter %></div>
+<div><span class="font-bold">name:</span> <%= @name %></div>
