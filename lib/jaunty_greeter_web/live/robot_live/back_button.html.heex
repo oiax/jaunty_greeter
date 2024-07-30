@@ -1,8 +1,3 @@
-<button
-  type="button"
-  class="btn btn-secondary"
-  phx-click="set_wizard_step"
-  phx-value-step={@step - 1}
->
+<.link patch={~p"/robot/wizard/#{@step - 1}"} class="btn btn-secondary">
   Back
-</button>
+</.link>
