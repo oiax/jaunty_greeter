@@ -1,6 +1,8 @@
 defmodule JauntyGreeterWeb.RobotLive do
   use JauntyGreeterWeb, :live_view
 
+  embed_templates "robot_live/*"
+
   def mount(_params, _session, socket) do
     socket =
       socket
@@ -27,17 +29,4 @@ defmodule JauntyGreeterWeb.RobotLive do
 
   defp button_class(true), do: "btn btn-secondary mx-2"
   defp button_class(false), do: "btn btn-primary mx-2"
-
-  defp name_button(assigns) do
-    ~H"""
-    <button
-      type="button"
-      class={button_class(@name == @current_name)}
-      phx-click="change_name"
-      phx-value-name={@name}
-    >
-      <%= @name %>
-    </button>
-    """
-  end
 end
