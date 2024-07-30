@@ -15,7 +15,10 @@ config :jaunty_greeter, JauntyGreeterWeb.Endpoint,
   url: [host: "localhost"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
-    formats: [html: JauntyGreeterWeb.ErrorHTML, json: JauntyGreeterWeb.ErrorJSON],
+    formats: [
+      html: JauntyGreeterWeb.ErrorHTML,
+      json: JauntyGreeterWeb.ErrorJSON
+    ],
     layout: false
   ],
   pubsub_server: JauntyGreeter.PubSub,
