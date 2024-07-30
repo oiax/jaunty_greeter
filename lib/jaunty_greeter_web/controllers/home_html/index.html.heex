@@ -1,7 +1,7 @@
-<ol class="list-disc ml-4">
+<ol class="flex justify-center">
   <%= for name <- ~w(Alice Bob Carol) do %>
     <li>
-      <a href={~p"/hello/#{name}"} class="underline text-blue-700">
+      <a href={~p"/hello/#{name}"} class="btn btn-primary mx-2">
         <%= name %>
       </a>
     </li>
