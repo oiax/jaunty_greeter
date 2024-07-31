@@ -28,7 +28,7 @@ defmodule JauntyGreeterWeb.RobotLive do
   end
 
   def handle_info(:increment_counter, socket) do
-    socket = assign(socket, :counter, socket.assigns.counter + 1)
+    socket = update(socket, :counter, &(&1 + 1))
 
     Process.send_after(self(), :increment_counter, 1000)
 
