@@ -35,3 +35,6 @@ jaunty_greeter-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# Ignore audio and video files
+/priv/static/audios/
+/priv/static/videos/
