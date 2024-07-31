@@ -21,6 +21,7 @@ defmodule JauntyGreeterWeb.Router do
     get "/hello/:name", HomeController, :hello
 
     live "/robot", RobotLive
+    live "/robot/wizard/:step", RobotLive
   end
 
   # Other scopes may use custom stacks.

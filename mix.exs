@@ -65,7 +65,10 @@ defmodule JauntyGreeter.MixProject do
   defp aliases do
     [
       setup: ["deps.get", "assets.setup", "assets.build"],
-      "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
+      "assets.setup": [
+        "tailwind.install --if-missing",
+        "esbuild.install --if-missing"
+      ],
       "assets.build": ["tailwind jaunty_greeter", "esbuild jaunty_greeter"],
       "assets.deploy": [
         "tailwind jaunty_greeter --minify",

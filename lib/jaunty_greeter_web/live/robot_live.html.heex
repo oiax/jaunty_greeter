@@ -7,3 +7,13 @@
 </ol>
 <div><span class="font-bold">counter:</span> <%= @counter %></div>
 <div><span class="font-bold">name:</span> <%= @name %></div>
+<div><span class="font-bold">wizard_step:</span> <%= @wizard_step %></div>
+<%= if @wizard_step == 0 do %>
+  <.wizard step={@wizard_step}></.wizard>
+<% else %>
+  <div class="card bg-base-300 w-96 shadow-xl mx-auto my-4">
+    <div class="card-body">
+      <.wizard step={@wizard_step}></.wizard>
+    </div>
+  </div>
+<% end %>

@@ -13,9 +13,12 @@ config :jaunty_greeter, JauntyGreeterWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "rL7XXu8ns55jkL3sBPG+lLowsj6JH1hfaKCpaqzY+O3cFQVLAVAkyX5eBhvfGhvf",
+  secret_key_base:
+    "rL7XXu8ns55jkL3sBPG+lLowsj6JH1hfaKCpaqzY+O3cFQVLAVAkyX5eBhvfGhvf",
   watchers: [
-    esbuild: {Esbuild, :install_and_run, [:jaunty_greeter, ~w(--sourcemap=inline --watch)]},
+    esbuild:
+      {Esbuild, :install_and_run,
+       [:jaunty_greeter, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:jaunty_greeter, ~w(--watch)]}
   ]
 
