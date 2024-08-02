@@ -1,7 +1,11 @@
 <p>Droid</p>
 
 <div class="my-2">
-  <img src={~p"/images/letter_a.png"} />
+  <img
+    src={~p"/images/letter_a.png"}
+    class="transition duration-1000 cursor-pointer"
+    phx-click={JS.toggle_class("invert rotate-90")}
+  />
 </div>
 
 <div class="my-2 bg-gray-800 p-4">
