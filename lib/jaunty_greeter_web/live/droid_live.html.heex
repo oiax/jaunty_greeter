@@ -1,28 +1,33 @@
-<p>Droid</p>
-
-<div class="my-2">
-  <img
-    src={~p"/images/letter_a.png"}
-    class="transition duration-1000 cursor-pointer"
-    id="letter-a"
-    phx-hook="MouseHoverHook"
+<div role="tablist" class="tabs tabs-lifted">
+  <input
+    type="radio"
+    name="selected_tab"
+    role="tab"
+    class="tab [--tab-border-color:black] focus:ring-transparent"
+    aria-label="Image"
+    checked
   />
-</div>
-
-<div class="my-2">
-  <button
-    type="button"
-    class="btn btn-secondary"
-    phx-click={JS.toggle_class("invert rotate-90", to: "#letter-a")}
-  >
-    Toggle
-  </button>
-</div>
-
-<div class="my-2 bg-gray-800 p-4">
-  <audio controls src={~p"/audios/kenne.mp3"}></audio>
-</div>
-
-<div class="my-2">
-  <video controls src={~p"/videos/steamboat_willie.mp4"} width="320"></video>
+  <div role="tabpanel" class="tab-content p-10">
+    <.image_tab_content></.image_tab_content>
+  </div>
+  <input
+    type="radio"
+    name="selected_tab"
+    role="tab"
+    class="tab [--tab-border-color:black] focus:ring-transparent"
+    aria-label="Audio"
+  />
+  <div role="tabpanel" class="tab-content p-10">
+    <.audio_tab_content></.audio_tab_content>
+  </div>
+  <input
+    type="radio"
+    name="selected_tab"
+    role="tab"
+    class="tab [--tab-border-color:black] focus:ring-transparent"
+    aria-label="Video"
+  />
+  <div role="tabpanel" class="tab-content p-10">
+    <.video_tab_content></.video_tab_content>
+  </div>
 </div>

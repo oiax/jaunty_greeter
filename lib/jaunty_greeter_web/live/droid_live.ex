@@ -1,8 +1,7 @@
 defmodule JauntyGreeterWeb.DroidLive do
   use JauntyGreeterWeb, :live_view
-  alias Phoenix.LiveView.JS
 
-  # defp hide_image(js \\ %JS{}) do
-  #   JS.hide(js)
-  # end
+  embed_templates "droid_live/*"
+
+  alias Phoenix.LiveView.JS
 end
