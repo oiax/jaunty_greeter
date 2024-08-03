@@ -1,5 +1,6 @@
 defmodule JauntyGreeterWeb.RobotLive do
   use JauntyGreeterWeb, :live_view
+  alias JauntyGreeterWeb.Shared
 
   embed_templates "robot_live/*"
 

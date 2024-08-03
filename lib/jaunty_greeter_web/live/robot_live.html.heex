@@ -11,9 +11,7 @@
 <%= if @wizard_step == 0 do %>
   <.wizard step={@wizard_step}></.wizard>
 <% else %>
-  <div class="card bg-base-300 w-96 shadow-xl mx-auto my-4">
-    <div class="card-body">
-      <.wizard step={@wizard_step}></.wizard>
-    </div>
-  </div>
+  <Shared.simple_card>
+    <.wizard step={@wizard_step}></.wizard>
+  </Shared.simple_card>
 <% end %>
