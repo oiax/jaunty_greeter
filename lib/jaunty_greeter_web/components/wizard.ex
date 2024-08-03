@@ -1,16 +1,12 @@
 defmodule JauntyGreeterWeb.Wizard do
   use JauntyGreeterWeb, :html
 
-  @wizard_total_steps 4
-
   slot :inner_block, required: true
   attr :step, :integer, required: true
 
   def step(%{step: 1} = assigns) do
-    assigns = assign(assigns, :total_steps, @wizard_total_steps)
-
     ~H"""
-    <h2 class="card-title">Step <%= @step %>/<%= @total_steps %></h2>
+    <h2 class="card-title">Step <%= @step %>/<%= wizard_total_steps() %></h2>
     <%= render_slot(@inner_block) %>
     <div class="card-actions justify-between">
       <.cancel_button />
@@ -21,10 +17,8 @@ defmodule JauntyGreeterWeb.Wizard do
 
   def step(%{step: step, total_steps: total_steps} = assigns)
       when step == total_steps do
-    assigns = assign(assigns, :total_steps, @wizard_total_steps)
-
     ~H"""
-    <h2 class="card-title">Step <%= @step %>/<%= @total_steps %></h2>
+    <h2 class="card-title">Step <%= @step %>/<%= wizard_total_steps() %></h2>
     <%= render_slot(@inner_block) %>
     <div class="card-actions justify-between">
       <.finish_button />
@@ -33,10 +27,8 @@ defmodule JauntyGreeterWeb.Wizard do
   end
 
   def step(assigns) do
-    assigns = assign(assigns, :total_steps, @wizard_total_steps)
-
     ~H"""
-    <h2 class="card-title">Step <%= @step %>/<%= @total_steps %></h2>
+    <h2 class="card-title">Step <%= @step %>/<%= wizard_total_steps() %></h2>
     <%= render_slot(@inner_block) %>
     <div class="card-actions justify-between">
       <.cancel_button />
@@ -47,6 +39,8 @@ defmodule JauntyGreeterWeb.Wizard do
     </div>
     """
   end
+
+  defp wizard_total_steps, do: 4
 
   defp cancel_button(assigns) do
     ~H"""
