@@ -1,7 +1,7 @@
 <ol class="flex justify-center">
   <%= for name <- ~w(Alice Bob Carol) do %>
     <li>
-      <.name_button name={name} current_name={@name}></.name_button>
+      <.name_button name={name} current_name={@name} />
     </li>
   <% end %>
 </ol>
@@ -9,11 +9,9 @@
 <div><span class="font-bold">name:</span> <%= @name %></div>
 <div><span class="font-bold">wizard_step:</span> <%= @wizard_step %></div>
 <%= if @wizard_step == 0 do %>
-  <.wizard step={@wizard_step}></.wizard>
+  <.wizard step={@wizard_step} />
 <% else %>
-  <div class="card bg-base-300 w-96 shadow-xl mx-auto my-4">
-    <div class="card-body">
-      <.wizard step={@wizard_step}></.wizard>
-    </div>
-  </div>
+  <Shared.simple_card>
+    <.wizard step={@wizard_step} />
+  </Shared.simple_card>
 <% end %>

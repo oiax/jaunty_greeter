@@ -1,43 +1,14 @@
 <div role="tablist" class="tabs tabs-lifted">
-  <input
-    type="radio"
-    name="selected_tab"
-    role="tab"
-    class="tab [--tab-border-color:black] focus:ring-transparent"
-    aria-label="Image"
-    checked
-  />
-  <div role="tabpanel" class="tab-content p-10">
-    <.image_tab_content></.image_tab_content>
-  </div>
-  <input
-    type="radio"
-    name="selected_tab"
-    role="tab"
-    class="tab [--tab-border-color:black] focus:ring-transparent"
-    aria-label="Audio"
-  />
-  <div role="tabpanel" class="tab-content p-10">
-    <.audio_tab_content></.audio_tab_content>
-  </div>
-  <input
-    type="radio"
-    name="selected_tab"
-    role="tab"
-    class="tab [--tab-border-color:black] focus:ring-transparent"
-    aria-label="Video"
-  />
-  <div role="tabpanel" class="tab-content p-10">
-    <.video_tab_content></.video_tab_content>
-  </div>
-  <input
-    type="radio"
-    name="selected_tab"
-    role="tab"
-    class="tab [--tab-border-color:black] focus:ring-transparent"
-    aria-label="Fade out"
-  />
-  <div role="tabpanel" class="tab-content p-10">
-    <.fade_out_tab_content></.fade_out_tab_content>
-  </div>
+  <Shared.tab_and_panel label="Image" active={true}>
+    <.image_tab_content />
+  </Shared.tab_and_panel>
+  <Shared.tab_and_panel label="Audio">
+    <.audio_tab_content />
+  </Shared.tab_and_panel>
+  <Shared.tab_and_panel label="Video">
+    <.video_tab_content />
+  </Shared.tab_and_panel>
+  <Shared.tab_and_panel label="Fade out">
+    <.fade_out_tab_content />
+  </Shared.tab_and_panel>
 </div>
