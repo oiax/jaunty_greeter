@@ -44,13 +44,13 @@ defmodule JauntyGreeterWeb.Wizard do
 
   defp cancel_button(assigns) do
     ~H"""
-    <.link patch={~p"/robot"} class="btn btn-neutral">Cancel</.link>
+    <.link patch={~p(/robot)} class="btn btn-neutral">Cancel</.link>
     """
   end
 
   defp back_button(assigns) do
     ~H"""
-    <.link patch={~p"/robot/wizard/#{@step - 1}"} class="btn btn-secondary">
+    <.link patch={~p(/robot/wizard/#{@step - 1})} class="btn btn-secondary">
       Back
     </.link>
     """
@@ -58,7 +58,7 @@ defmodule JauntyGreeterWeb.Wizard do
 
   defp next_button(assigns) do
     ~H"""
-    <.link patch={~p"/robot/wizard/#{@step + 1}"} class="btn btn-primary">
+    <.link patch={~p(/robot/wizard/#{@step + 1})} class="btn btn-primary">
       Next
     </.link>
     """
@@ -66,7 +66,7 @@ defmodule JauntyGreeterWeb.Wizard do
 
   defp finish_button(assigns) do
     ~H"""
-    <.link patch={~p"/robot"} class="btn btn-primary">Finish</.link>
+    <.link patch={~p(/robot)} class="btn btn-primary">Finish</.link>
     """
   end
 end

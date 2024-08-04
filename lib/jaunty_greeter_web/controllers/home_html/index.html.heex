@@ -1,7 +1,7 @@
 <ol class="flex justify-center">
   <%= for name <- ~w(Alice Bob Carol) do %>
     <li>
-      <a href={~p"/hello/#{name}"} class="btn btn-primary mx-2">
+      <a href={~p(/hello/#{name})} class="btn btn-primary mx-2">
         <%= name %>
       </a>
     </li>
