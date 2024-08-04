@@ -12,7 +12,9 @@ defmodule JauntyGreeterWeb.RobotLive do
       |> assign(:name, "world")
       |> assign(:wizard_step, 0)
 
-    Process.send_after(self(), :increment_counter, 1000)
+    if connected?(socket) do
+      :timer.send_interval(1000, self(), :increment_counter)
+    end
 
     {:ok, socket}
   end
@@ -31,9 +33,6 @@ defmodule JauntyGreeterWeb.RobotLive do
 
   def handle_info(:increment_counter, socket) do
     socket = update(socket, :counter, &(&1 + 1))
-
-    Process.send_after(self(), :increment_counter, 1000)
-
     {:noreply, socket}
   end
 
