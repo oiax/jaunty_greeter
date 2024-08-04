@@ -10,7 +10,7 @@ defmodule JauntyGreeterWeb.Wizard do
     <%= render_slot(@inner_block) %>
     <div class="card-actions justify-between">
       <.cancel_button />
-      <.next_button step={@step}></.next_button>
+      <.next_button step={@step} />
     </div>
     """
   end
@@ -33,8 +33,8 @@ defmodule JauntyGreeterWeb.Wizard do
     <div class="card-actions justify-between">
       <.cancel_button />
       <div>
-        <.back_button step={@step}></.back_button>
-        <.next_button step={@step}></.next_button>
+        <.back_button step={@step} />
+        <.next_button step={@step} />
       </div>
     </div>
     """
