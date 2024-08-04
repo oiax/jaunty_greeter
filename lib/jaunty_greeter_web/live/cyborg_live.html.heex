@@ -1,1 +1,10 @@
-<div>Cyborg</div>
+<div role="tablist" class="tabs tabs-lifted">
+  <Shared.tab_and_panel label="Data" active={true}>
+    <.data_tab_content {assigns} />
+  </Shared.tab_and_panel>
+  <Shared.tab_and_panel label="Table">
+    <%= if @daily_records do %>
+      <.table_tab_content {assigns} />
+    <% end %>
+  </Shared.tab_and_panel>
+</div>
