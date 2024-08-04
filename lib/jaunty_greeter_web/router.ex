@@ -24,6 +24,8 @@ defmodule JauntyGreeterWeb.Router do
     live "/robot/wizard/:step", RobotLive
 
     live "/droid", DroidLive
+
+    live "/cyborg", CyborgLive
   end
 
   # Other scopes may use custom stacks.
