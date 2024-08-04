@@ -1,0 +1,23 @@
+<div class="overflow-x-auto">
+  <table class="table table-zebra w-auto mx-auto">
+    <caption class="font-bold">
+      This week's temperatures in Tokyo
+    </caption>
+    <thead>
+      <tr class="border-black">
+        <th>Date</th>
+        <th>Maximum temperature</th>
+        <th>Minimum temperature</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for record <- @daily_records do %>
+        <tr class="[--fallback-b2:#ccc]">
+          <td><%= record.date %></td>
+          <td class="text-right"><%= record.max_value %></td>
+          <td class="text-right"><%= record.min_value %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
