@@ -17,6 +17,10 @@ ENV NODE_MAJOR=22
 RUN echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" > /etc/apt/sources.list.d/nodesource.list
 RUN apt-get update && apt-get -y install nodejs
 
+RUN apt-get -y install build-essential libcairo2-dev libpango1.0-dev \
+    libjpeg-dev libgif-dev librsvg2-dev
+RUN npm install -g vega vega-lite canvas
+
 RUN echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
 
 ARG UID=1000

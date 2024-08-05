@@ -10,6 +10,7 @@ defmodule JauntyGreeterWeb.CyborgLive do
       |> assign(:raw_json_data, nil)
       |> assign(:daily_records, nil)
       |> assign(:error, nil)
+      |> assign(:chart_svg, nil)
 
     if connected?(socket), do: send(self(), :get_daily_records)
 
@@ -37,6 +38,8 @@ defmodule JauntyGreeterWeb.CyborgLive do
             |> assign(:raw_json_data, resp.body)
             |> assign(:daily_records, construct_daily_records(resp.body))
 
+          send(self(), :draw_chart)
+
           {:noreply, socket}
         else
           {:noreply, assign(socket, :error, resp.body)}
@@ -47,7 +50,48 @@ defmodule JauntyGreeterWeb.CyborgLive do
     end
   end
 
-  defp construct_daily_records(%{"daily"=> daily_data} = raw_json_data) do
+  def handle_info(:draw_chart, socket) do
+    max_values =
+      socket.assigns.daily_records
+      |> Enum.map(fn r ->
+        %{
+          max_or_min: "Max. temperature",
+          date: r.date,
+          temperature: r.max_value
+        }
+      end)
+
+    min_values =
+      socket.assigns.daily_records
+      |> Enum.map(fn r ->
+        %{
+          max_or_min: "Min. temperature",
+          date: r.date,
+          temperature: r.min_value
+        }
+      end)
+
+    chart_svg =
+      VegaLite.new(width: 200, height: 200)
+      |> VegaLite.data_from_values(max_values ++ min_values)
+      |> VegaLite.mark(:line)
+      |> VegaLite.encode_field(:x, "date", type: :temporal, title: "Date")
+      |> VegaLite.encode_field(:y, "temperature",
+        type: :quantitative,
+        scale: %{domain: [10, 40]},
+        title: "Temperature"
+      )
+      |> VegaLite.encode_field(:color, "max_or_min", type: :nominal, title: "")
+      |> VegaLite.config(
+        legend: %{orient: "bottom", layout: %{bottom: %{anchor: "middle"}}}
+      )
+      |> VegaLite.Export.to_svg()
+      |> Phoenix.HTML.raw()
+
+    {:noreply, assign(socket, :chart_svg, chart_svg)}
+  end
+
+  defp construct_daily_records(%{"daily" => daily_data} = _raw_json_data) do
     dates = Map.get(daily_data, "time")
     max_values = Map.get(daily_data, "temperature_2m_max")
     min_values = Map.get(daily_data, "temperature_2m_min")
