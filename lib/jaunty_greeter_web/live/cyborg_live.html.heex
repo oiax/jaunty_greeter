@@ -7,4 +7,9 @@
       <.table_tab_content {assigns} />
     <% end %>
   </Shared.tab_and_panel>
+  <Shared.tab_and_panel label="Chart">
+    <%= if @chart_svg do %>
+      <.chart_tab_content {assigns} />
+    <% end %>
+  </Shared.tab_and_panel>
 </div>

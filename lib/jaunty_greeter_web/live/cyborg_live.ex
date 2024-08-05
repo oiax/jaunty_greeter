@@ -10,6 +10,7 @@ defmodule JauntyGreeterWeb.CyborgLive do
       |> assign(:raw_json_data, nil)
       |> assign(:daily_records, nil)
       |> assign(:error, nil)
+      |> assign(:chart_svg, nil)
 
     if connected?(socket), do: send(self(), :get_daily_records)
 
@@ -37,6 +38,8 @@ defmodule JauntyGreeterWeb.CyborgLive do
             |> assign(:raw_json_data, resp.body)
             |> assign(:daily_records, construct_daily_records(resp.body))
 
+          send(self(), :draw_chart)
+
           {:noreply, socket}
         else
           {:noreply, assign(socket, :error, resp.body)}
@@ -47,7 +50,20 @@ defmodule JauntyGreeterWeb.CyborgLive do
     end
   end
 
-  defp construct_daily_records(%{"daily"=> daily_data} = raw_json_data) do
+  def handle_info(:draw_chart, socket) do
+    chart_svg =
+      VegaLite.new(width: 300, height: 300)
+      |> VegaLite.data_from_values(iteration: 1..100, score: 1..100)
+      |> VegaLite.mark(:line)
+      |> VegaLite.encode_field(:x, "iteration", type: :quantitative)
+      |> VegaLite.encode_field(:y, "score", type: :quantitative)
+      |> VegaLite.Export.to_svg()
+      |> Phoenix.HTML.raw()
+
+    {:noreply, assign(socket, :chart_svg, chart_svg)}
+  end
+
+  defp construct_daily_records(%{"daily"=> daily_data} = _raw_json_data) do
     dates = Map.get(daily_data, "time")
     max_values = Map.get(daily_data, "temperature_2m_max")
     min_values = Map.get(daily_data, "temperature_2m_min")
