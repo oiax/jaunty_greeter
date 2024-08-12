@@ -31,8 +31,14 @@ defmodule JauntyGreeterWeb.RobotLive do
     {:noreply, socket}
   end
 
-  def handle_info(:increment_counter, socket) do
-    socket = update(socket, :counter, &(&1 + 1))
+  def handle_event("increment_counter", %{"delta" => delta}, socket) do
+    delta =
+      case Integer.parse(delta) do
+        {n, _} -> n
+        _ -> 0
+      end
+
+    socket = update(socket, :counter, &(&1 + delta))
     {:noreply, socket}
   end
 
@@ -43,8 +49,13 @@ defmodule JauntyGreeterWeb.RobotLive do
 
   def handle_event("set_wizard_step", %{"step" => step}, socket)
       when step in ~w(0 1 2 3 4) do
-    {step, ""} = Integer.parse(step)
+    {step, _} = Integer.parse(step)
     socket = assign(socket, :wizard_step, step)
+    {:noreply, socket}
+  end
+
+  def handle_info(:increment_counter, socket) do
+    socket = update(socket, :counter, &(&1 + 1))
     {:noreply, socket}
   end
 
