@@ -8,4 +8,8 @@ defmodule JauntyGreeterWeb.HomeController do
   def hello(conn, %{"name" => name} = _params) do
     render(conn, :hello, name: name)
   end
+
+  def hello(conn, _params) do
+    redirect(conn, to: ~p(/))
+  end
 end
