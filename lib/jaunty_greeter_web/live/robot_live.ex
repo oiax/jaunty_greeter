@@ -9,4 +9,9 @@ defmodule JauntyGreeterWeb.RobotLive do
 
     {:ok, socket}
   end
+
+  def handle_event("increment_counter", _params, socket) do
+    socket = update(socket, :counter, &(&1 + 1))
+    {:noreply, socket}
+  end
 end
