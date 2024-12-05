@@ -4,7 +4,8 @@ import Config
 # you can enable the server option below.
 config :jaunty_greeter, JauntyGreeterWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "uNKq+VOCp84ASq4HbhFRLefi4r3MxXi36dsp0KgKL36hfvso3SwjDAtdklOAtsR0",
+  secret_key_base:
+    "uNKq+VOCp84ASq4HbhFRLefi4r3MxXi36dsp0KgKL36hfvso3SwjDAtdklOAtsR0",
   server: false
 
 # Print only warnings and errors during test

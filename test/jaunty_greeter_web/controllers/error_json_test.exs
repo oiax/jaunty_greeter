@@ -2,7 +2,9 @@ defmodule JauntyGreeterWeb.ErrorJSONTest do
   use JauntyGreeterWeb.ConnCase, async: true
 
   test "renders 404" do
-    assert JauntyGreeterWeb.ErrorJSON.render("404.json", %{}) == %{errors: %{detail: "Not Found"}}
+    assert JauntyGreeterWeb.ErrorJSON.render("404.json", %{}) == %{
+             errors: %{detail: "Not Found"}
+           }
   end
 
   test "renders 500" do

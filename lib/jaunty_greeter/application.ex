@@ -9,7 +9,10 @@ defmodule JauntyGreeter.Application do
   def start(_type, _args) do
     children = [
       JauntyGreeterWeb.Telemetry,
-      {DNSCluster, query: Application.get_env(:jaunty_greeter, :dns_cluster_query) || :ignore},
+      {DNSCluster,
+       query:
+         Application.get_env(:jaunty_greeter, :dns_cluster_query) ||
+           :ignore},
       {Phoenix.PubSub, name: JauntyGreeter.PubSub},
       # Start a worker by calling: JauntyGreeter.Worker.start_link(arg)
       # {JauntyGreeter.Worker, arg},
