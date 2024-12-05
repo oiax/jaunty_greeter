@@ -19,9 +19,4 @@ defmodule JauntyGreeterWeb.Router do
 
     get "/", HomeController, :hello
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", JauntyGreeterWeb do
-  #   pipe_through :api
-  # end
 end
