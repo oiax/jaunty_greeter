@@ -20,5 +20,7 @@ defmodule JauntyGreeterWeb.Router do
     get "/", HomeController, :index
     get "/hello", HomeController, :hello
     get "/hello/:name", HomeController, :hello
+
+    live "/robot", RobotLive
   end
 end
