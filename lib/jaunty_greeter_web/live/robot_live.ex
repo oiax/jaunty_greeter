@@ -20,4 +20,9 @@ defmodule JauntyGreeterWeb.RobotLive do
     socket = update(socket, :counter, &(&1 + delta))
     {:noreply, socket}
   end
+
+  def handle_event("change_name", %{"name" => name}, socket) do
+    socket = assign(socket, :name, name)
+    {:noreply, socket}
+  end
 end
