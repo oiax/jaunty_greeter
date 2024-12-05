@@ -10,8 +10,14 @@ defmodule JauntyGreeterWeb.RobotLive do
     {:ok, socket}
   end
 
-  def handle_event("increment_counter", _params, socket) do
-    socket = update(socket, :counter, &(&1 + 1))
+  def handle_event("increment_counter", %{"delta" => delta}, socket) do
+    delta =
+      case Integer.parse(delta) do
+        {n, _} -> n
+        :error -> 0
+      end
+
+    socket = update(socket, :counter, &(&1 + delta))
     {:noreply, socket}
   end
 end
