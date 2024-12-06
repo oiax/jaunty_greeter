@@ -54,12 +54,43 @@ defmodule JauntyGreeterWeb.CyborgLive do
   end
 
   def handle_info(:draw_chart, socket) do
+    max_values =
+      Enum.map(socket.assigns.daily_records, fn r ->
+        %{
+          max_or_min: "Max. temperature",
+          date: r.date,
+          temperature: r.max_value
+        }
+      end)
+
+    min_values =
+      socket.assigns.daily_records
+      |> Enum.map(fn r ->
+        %{
+          max_or_min: "Min. temperature",
+          date: r.date,
+          temperature: r.min_value
+        }
+      end)
+
     chart_svg =
       VegaLite.new(width: 200, height: 200)
-      |> VegaLite.data_from_values(a: 0..10, b: 0..10)
+      |> VegaLite.data_from_values(max_values ++ min_values)
       |> VegaLite.mark(:line)
-      |> VegaLite.encode_field(:x, "a", type: :quantitative)
-      |> VegaLite.encode_field(:y, "b", type: :quantitative)
+      |> VegaLite.encode_field(:x, "date",
+        type: :temporal,
+        title: "Date"
+      )
+      |> VegaLite.encode_field(:y, "temperature",
+        type: :quantitative,
+        scale: %{domain: [10, 40]},
+        title: "Temperature"
+      )
+      |> VegaLite.encode_field(:color, "max_or_min",
+        type: :nominal,
+        title: "Legend"
+      )
+      |> VegaLite.config(legend: %{orient: "bottom"})
       |> VegaLite.Convert.to_svg()
       |> Phoenix.HTML.raw()
 
