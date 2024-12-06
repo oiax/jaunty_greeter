@@ -32,6 +32,14 @@ defmodule JauntyGreeterWeb.CyborgLive do
     case Req.get(uri) do
       {:ok, resp} ->
         if is_map(resp.body) do
+          socket =
+            socket
+            |> assign(:raw_json_data, resp.body)
+            |> assign(
+              :daily_records,
+              construct_daily_records(resp.body)
+            )
+
           {:noreply, assign(socket, :raw_json_data, resp.body)}
         else
           {:noreply, assign(socket, :error, resp.body)}
@@ -41,4 +49,24 @@ defmodule JauntyGreeterWeb.CyborgLive do
         {:noreply, assign(socket, :error, ex)}
     end
   end
+
+  defp construct_daily_records(
+         %{"daily" => daily_data} = _raw_json_data
+       ) do
+    dates = Map.get(daily_data, "time")
+    max_values = Map.get(daily_data, "temperature_2m_max")
+    min_values = Map.get(daily_data, "temperature_2m_min")
+
+    [dates, max_values, min_values]
+    |> Enum.zip()
+    |> Enum.map(fn {date, max_value, min_value} ->
+      %TemperatureData.DailyRecord{
+        date: date,
+        max_value: max_value,
+        min_value: min_value
+      }
+    end)
+  end
+
+  defp construct_daily_records(_raw_json_data), do: nil
 end
