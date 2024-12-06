@@ -35,4 +35,7 @@ defmodule JauntyGreeterWeb.RobotLive do
     socket = update(socket, :counter, &(&1 + 1))
     {:noreply, socket}
   end
+
+  defp button_class(true), do: "btn btn-secondary mx-2"
+  defp button_class(false), do: "btn btn-primary mx-2"
 end
