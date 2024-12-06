@@ -1,0 +1,14 @@
+<div class="my-2">
+  <%= cond do %>
+    <% @raw_json_data -> %>
+      <pre class="bg-base-200 p-4">
+      <%= Jason.Formatter.pretty_print(Jason.encode!(@raw_json_data)) %>
+    </pre>
+    <% @error -> %>
+      <div class="text-error p-4 max-w-xl">
+        {inspect(@error)}
+      </div>
+    <% true -> %>
+      <p>Loading data...</p>
+  <% end %>
+</div>
