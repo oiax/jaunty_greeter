@@ -25,5 +25,7 @@ defmodule JauntyGreeterWeb.Router do
     live "/robot/wizard/:step", RobotLive
 
     live "/droid", DroidLive
+
+    live "/cyborg", CyborgLive
   end
 end
