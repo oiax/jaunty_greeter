@@ -17,3 +17,15 @@
 </div>
 <div><span class="font-bold">name:</span> {@name}</div>
 <div><span class="font-bold">wizard_step:</span> {@wizard_step}</div>
+<%= case @wizard_step do %>
+  <% 0 -> %>
+    <.wizard_step0 />
+  <% 1 -> %>
+    <.wizard_step1 />
+  <% 2 -> %>
+    <.wizard_step2 />
+  <% 3 -> %>
+    <.wizard_step3 />
+  <% 4 -> %>
+    <.wizard_step4 />
+<% end %>
