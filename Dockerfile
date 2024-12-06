@@ -21,6 +21,10 @@ RUN apt-get -y install build-essential libcairo2-dev libpango1.0-dev \
     libjpeg-dev libgif-dev librsvg2-dev
 RUN npm install -g vega vega-lite canvas
 
+RUN apt-get -y install build-essential libcairo2-dev libpango1.0-dev \
+    libjpeg-dev libgif-dev librsvg2-dev
+RUN npm install -g vega vega-lite canvas
+
 RUN echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
 
 ARG UID=1000
