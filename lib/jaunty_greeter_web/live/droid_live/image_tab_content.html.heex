@@ -2,6 +2,16 @@
   <img
     src={~p(/images/letter_a.png)}
     class="transition-transform duration-1000 cursor-pointer"
-    phx-click={JS.toggle_class("invert rotate-90")}
+    id="letter-a"
   />
+</div>
+
+<div class="my-2 flex justify-center">
+  <button
+    type="button"
+    class="btn btn-primary"
+    phx-click={JS.toggle_class("invert rotate-90", to: "#letter-a")}
+  >
+    Rotate
+  </button>
 </div>
