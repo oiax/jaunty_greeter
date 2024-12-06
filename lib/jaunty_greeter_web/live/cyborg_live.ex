@@ -8,8 +8,9 @@ defmodule JauntyGreeterWeb.CyborgLive do
     socket =
       socket
       |> assign(:raw_json_data, nil)
-      |> assign(:daily_temperature_data, nil)
+      |> assign(:daily_records, nil)
       |> assign(:error, nil)
+      |> assign(:chart_svg, nil)
 
     if connected?(socket), do: send(self(), :get_daily_temperature_data)
 
@@ -40,6 +41,8 @@ defmodule JauntyGreeterWeb.CyborgLive do
               construct_daily_records(resp.body)
             )
 
+          send(self(), :draw_chart)
+
           {:noreply, assign(socket, :raw_json_data, resp.body)}
         else
           {:noreply, assign(socket, :error, resp.body)}
@@ -48,6 +51,19 @@ defmodule JauntyGreeterWeb.CyborgLive do
       {:error, ex} ->
         {:noreply, assign(socket, :error, ex)}
     end
+  end
+
+  def handle_info(:draw_chart, socket) do
+    chart_svg =
+      VegaLite.new(width: 200, height: 200)
+      |> VegaLite.data_from_values(a: 0..10, b: 0..10)
+      |> VegaLite.mark(:line)
+      |> VegaLite.encode_field(:x, "a", type: :quantitative)
+      |> VegaLite.encode_field(:y, "b", type: :quantitative)
+      |> VegaLite.Convert.to_svg()
+      |> Phoenix.HTML.raw()
+
+    {:noreply, assign(socket, :chart_svg, chart_svg)}
   end
 
   defp construct_daily_records(
