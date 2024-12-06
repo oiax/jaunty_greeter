@@ -8,6 +8,7 @@ defmodule JauntyGreeterWeb.RobotLive do
       socket
       |> assign(:counter, 0)
       |> assign(:name, "world")
+      |> assign(:wizard_step, 0)
 
     if connected?(socket) do
       Process.send_after(self(), :increment_counter, 1000)
@@ -29,6 +30,13 @@ defmodule JauntyGreeterWeb.RobotLive do
 
   def handle_event("change_name", %{"name" => name}, socket) do
     socket = assign(socket, :name, name)
+    {:noreply, socket}
+  end
+
+  def handle_event("set_wizard_step", %{"step" => step}, socket)
+      when step in ~w(0 1 2 3 4) do
+    {step, ""} = Integer.parse(step)
+    socket = assign(socket, :wizard_step, step)
     {:noreply, socket}
   end
 
