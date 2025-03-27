@@ -378,7 +378,7 @@ defmodule JauntyGreeterWeb.CoreComponents do
       end)
 
     ~H"""
-    <div>
+    <div class="mb-4">
       <label class="flex items-center gap-4 text-sm leading-6 text-zinc-600">
         <input
           type="hidden"
@@ -404,7 +404,7 @@ defmodule JauntyGreeterWeb.CoreComponents do
 
   def input(%{type: "select"} = assigns) do
     ~H"""
-    <div>
+    <div class="mb-4">
       <.label for={@id}>{@label}</.label>
       <select
         id={@id}
@@ -423,7 +423,7 @@ defmodule JauntyGreeterWeb.CoreComponents do
 
   def input(%{type: "textarea"} = assigns) do
     ~H"""
-    <div>
+    <div class="mb-4">
       <.label for={@id}>{@label}</.label>
       <textarea
         id={@id}
@@ -443,7 +443,7 @@ defmodule JauntyGreeterWeb.CoreComponents do
   # All other inputs text, datetime-local, url, password, etc. are handled here...
   def input(assigns) do
     ~H"""
-    <div>
+    <div class="mb-4">
       <.label for={@id}>{@label}</.label>
       <input
         type={@type}

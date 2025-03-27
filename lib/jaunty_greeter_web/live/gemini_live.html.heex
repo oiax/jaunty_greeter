@@ -1,1 +1,12 @@
-Gemini
+<.form :let={f} for={@changeset}>
+  <CoreComponents.input field={f[:title]} label="Title" />
+  <CoreComponents.input
+    type="select"
+    field={f[:dialect]}
+    label="Dialect"
+    options={~w(Tokyo Osaka Nagoya)}
+  />
+  <div class="mt-4 flex justify-center">
+    <.button>Generate</.button>
+  </div>
+</.form>

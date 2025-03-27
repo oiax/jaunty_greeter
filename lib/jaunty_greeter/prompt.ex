@@ -9,6 +9,10 @@ defmodule Prompt do
 
   @field_names [:title, :dialect]
 
+  def changeset() do
+    cast(%__MODULE__{}, %{}, [])
+  end
+
   def changeset(prompt, attrs \\ %{}) do
     prompt
     |> cast(attrs, @field_names)
