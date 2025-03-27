@@ -54,7 +54,8 @@ defmodule JauntyGreeter.MixProject do
       {:bandit, "~> 1.5"},
       {:req, "~> 0.5.0"},
       {:vega_lite, "~> 0.1.11"},
-      {:vega_lite_convert, "~> 1.0.0"}
+      {:vega_lite_convert, "~> 1.0.0"},
+      {:phoenix_ecto, "~> 4.6"}
     ]
   end
 
